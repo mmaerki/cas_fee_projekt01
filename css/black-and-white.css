@@ -1,0 +1,23 @@
+/*------------------- CSS RESET ---------------------
+---------------------------------------------------*/
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  font-weight: normal;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+img,
+a img {
+  border: none;
+}
