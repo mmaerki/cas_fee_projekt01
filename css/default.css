@@ -1,23 +1,31 @@
 /*------------------- CSS RESET ---------------------
 ---------------------------------------------------*/
-* {
-  padding: 0;
+body {
+  background-color:#837870;
+}
+
+
+ul {
+  list-style-type: none;
   margin: 0;
-  font-size: 100%;
-  font-weight: normal;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
 }
 
-ul,
-ol {
-  list-style: none;
+li {
+  float: left;
 }
 
-b,
-strong {
-  font-weight: bold;
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
-img,
-a img {
-  border: none;
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
 }

@@ -7,20 +7,78 @@
 	<title>CAS-FEE | Projekt1</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="css/common.css">
-	<link rel="stylesheet" href="css/default.css">
+	<link id="styleId" rel="stylesheet" href="css/default.css">
 
-	<script src="js/jquery-3.1.1.min.js"></script>
-	<script src="js/main.js"></script>
+  <script id="note-template" type="text/x-handlebars-template">
+    <div>
+      {{#each this}}
+        <div style="border-top:1px solid #111;margin:3px;dth:100%;">
+          <div>
+            <span style="display:inline-block;width:9%;">{{dueDate}}</span>
+            <span style="display:inline-block;width:66%;">{{title}}</span>
+            <span style="display:inline-block;width:10%;">{{importance}} ***</span>
+            <span style="display:inline-block;width:10%;"><button>Edit</button></span>
+          </div>
+          <div>
+            <span style="display:inline-block;width:9%;">
+              <input id="chkFinished" type="checkbox"><label for="chkFinished">Finished</label>
+            </span>
+            <span style="border:1px solid #111;display:inline-block;width:76%;height:50px;">{{description}}</span>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </script>
 </head>
 
 <body>
 	<div id="container">
-
-
-
+    <div id="header">
+      <div style="background-color:#111;display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-between;">
+        <nav>
+          <ul>
+            <li><a href="edit.html">Create New Note</a></li>
+          </ul>
+        </nav>
+        <div>
+          <select id="style" class="select" name="styles" onchange="changeStyle(this)">
+            <option value="default.css">Default</option>
+            <option value="black-and-white.css">Black and White</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div id="main">
+      <div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-between;margin-top:24px;margin-bottom:0;">
+        <div>
+          <button class="button" onclick="sortBy(1)">By finish day</button>
+          <button class="button" onclick="sortBy(2)">By created day</button>
+          <button class="button" onclick="sortBy(3)">By importance</button>
+        </div>
+        <div>
+          <input id="chkShowFinished" type="checkbox" name="Show finished" value="Show finished">
+          <label for="chkShowFinished">Show finished</label>
+        </div>
+      </div>
+      <div class="content-placeholder" />
+    </div>
+    <div id="footer">
+      <footer>
+        <p>Created by: Michael M&auml;rki</p>
+        <p>Contact information:
+          <a href="mailto:michael.maerki@hsr.ch">michael.maerki@hsr.ch</a>.
+        </p>
+      </footer>
+    </div>
 	</div>
+
+  <script src="js/handlebars.min-latest.js"></script>
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="js/moment.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/main.js"></script>
+
 </body>
 </html>

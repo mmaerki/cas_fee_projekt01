@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Note</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link id="styleId" rel="stylesheet" href="css/default.css">
+</head>
+<body onsubmit="return onSave(this)">
+  <div style="width:80%;max-width:300px;margin:0 auto;">
+    <h1 style="font-weight:bold;font-size:14px;margin-bottom:6px;margin-top:6px;">Create new note!</h1>
+    <form>
+      <div>
+        <label style="display:inline-block;width:82px;">Title</label>
+        <input id="title" type="text" placeholder="Title" required />
+      </div>
+      <div>
+        <label style="display:inline-block;width:82px;vertical-align: top;">Description</label>
+        <textarea id="description" cols="40" rows="5" placeholder="Description" required></textarea>
+      </div>
+      <div>
+        <label style="display:inline-block;width:82px;">Importance</label>
+        <input id="importance" type="number" min="1" max="5" value="1" />
+      </div>
+      <div>
+        <label style="display:inline-block;width:82px;">Erledigt bis</label>
+        <input id="dueDate" type="date" required />
+      </div>
+
+      <button type="submit">Save</button>
+      <button onclick="return onCancel(this)" formnovalidate>Cancel</button>
+    </form>
+  </div>
+
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="js/moment.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/edit.js"></script>
+
+</body>
+</html>
