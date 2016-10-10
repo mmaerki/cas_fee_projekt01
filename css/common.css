@@ -28,7 +28,7 @@ select {
    Custom
    ========================================================================== */
 
-body {
+body{
   color: #666666;
   font-family: Verdana;
   font-size: 76%;
@@ -38,72 +38,181 @@ body {
 
 #container {
   height:100%;
-  /*position:absolute;*/
   margin:12px auto;
   width:1024px;
 }
 
-#header {
-  background-color:darkorange;
+header {
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
   height:10%;
+  justify-content:space-between;
 }
 
 #main {
-  background-color:#fff;
-  height:85%;
+  margin:12px;
 }
 
-#footer {
-  background-color:#333;
-  color:#fff;
+#main-content {
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  margin-top:3px;
+  margin-bottom:3px;
+}
+
+footer {
+  font-size:9px;
   height:5%;
+  padding:6px;
+  text-align: center;
 }
 
-.button {
-  -webkit-transition-duration: 0.4s; /* Safari */
-  background-color: #fff;
-  border: 1px solid #333;
-  color: black;
+#edit-container {
+  margin:0 auto;
+  max-width:600px;
+  width:100%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+i {
+  text-align: right;
+}
+
+button {
+  border: 1px solid transparent;
+  border-radius: .25rem;
   cursor: pointer;
   display: inline-block;
-  margin: 6px 2px;
-  padding: 2px 8px;
+  font-weight: 400;
+  line-height: 1.25;
   text-align: center;
-  text-decoration: none;
+  user-select: none;
+  padding: .5rem 1rem;
   transition-duration: 0.4s;
-}
-
-.button:hover {
-  background-color:#555;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-  color:#fff;
+  vertical-align: middle;
+  white-space: nowrap;
+  width:120px;
 }
 
 .select {
-  background-color:#333;
-  color:#fff;
+  border:0;
   font-size:12px;
   height:100%;
   line-height:20px;
   padding:3px;
-  width:200px;
+  width:140px;
 }
 
-input[type="text"],
-textarea {
-  background-color: #fff;
-  color: #333;
-  font-family: Verdana;
-  font-size: 12px;
-
-  line-height: 20px;
-  padding: 3px;
-  width: 200px;
-  vertical-align: middle;
+.edit-title {
+  display: inline-block;
+  font-size:38px;
+  font-weight: 300;
+  padding-bottom: 10px;
 }
 
-input {
-  height: 20px;
+.form-label {
+  display:inline-block;
+  width:20%;
+}
+
+.form-control {
+  -webkit-background-clip: padding-box;
+  background-image: none;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: .25rem;
+  display: inline-block;
+  line-height: 1.25;
+  margin:0;
+  max-width:79%;
+  padding: .5rem .75rem;
+  width: 74%;
+}
+
+.note-template {
+  border-top:1px solid #111;
+  margin-top:12px;
+  width:100%;
+}
+
+.note-template-col11,
+.note-template-col21 {
+  display:inline-block;
+  width:12%;
+}
+
+.note-template-col11 {
+  margin-top:12px;
+}
+
+.note-template-col12,
+.note-template-col22 {
+  display:inline-block;
+}
+
+.note-template-col12 {
+  font-weight:bold;
+  font-size:12px;
+  width: 66%;
+}
+
+.note-template-col22 {
+  width: 76%;
+}
+
+.note-template-col13 {
+  display:inline-block;
+  text-align: right;
+  width:10%;
+}
+
+.note-template-col14,
+.note-template-col24 {
+  display:inline-block;
+  width:10%;
+}
+
+.edit-row {
+  margin-top: 6px;
+}
+
+.h-align-right {
+  text-align: right;
+}
+
+.v-align-top {
+  vertical-align: top;
+}
+
+.note-template-description {
+  max-width:100%;
+  width:100%;
+}
+
+.edit-button {
+  width:100%;
 }
 
 .debug {

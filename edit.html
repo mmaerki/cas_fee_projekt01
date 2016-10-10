@@ -6,35 +6,38 @@
     <link rel="stylesheet" href="css/common.css">
     <link id="styleId" rel="stylesheet" href="css/default.css">
 </head>
-<body onsubmit="return onSave(this)">
-  <div style="width:80%;max-width:300px;margin:0 auto;">
-    <h1 style="font-weight:bold;font-size:14px;margin-bottom:6px;margin-top:6px;">Create new note!</h1>
-    <form>
-      <div>
-        <label style="display:inline-block;width:82px;">Title</label>
-        <input id="title" type="text" placeholder="Title" required />
+<body>
+  <div id="edit-container">
+    <h1 class="edit-title">Create new note!</h1>
+    <form action="index.html">
+      <div class="edit-row">
+        <label class="form-label">Title</label>
+        <input id="title" class="form-control" type="text" placeholder="Title" required />
       </div>
-      <div>
-        <label style="display:inline-block;width:82px;vertical-align: top;">Description</label>
-        <textarea id="description" cols="40" rows="5" placeholder="Description" required></textarea>
+      <div class="edit-row">
+        <label class="form-label v-align-top">Description</label>
+        <textarea id="description" class="form-control" cols="40" rows="5" placeholder="Description" required></textarea>
       </div>
-      <div>
-        <label style="display:inline-block;width:82px;">Importance</label>
-        <input id="importance" type="number" min="1" max="5" value="1" />
+      <div class="edit-row">
+        <label class="form-label">Importance</label>
+        <input id="importance" class="form-control" type="number" min="1" max="5" value="1" />
       </div>
-      <div>
-        <label style="display:inline-block;width:82px;">Erledigt bis</label>
-        <input id="dueDate" type="date" required />
+      <div class="edit-row">
+        <label class="form-label">Erledigt bis</label>
+        <input id="dueDate" class="form-control" type="date" required />
       </div>
-
-      <button type="submit">Save</button>
-      <button onclick="return onCancel(this)" formnovalidate>Cancel</button>
+      <div class="edit-row">
+        <button class="button" type="submit">Save</button>
+        <button id="cancelButton" class="button" formnovalidate>Cancel</button>
+      </div>
     </form>
   </div>
 
   <script src="js/jquery-3.1.1.min.js"></script>
   <script src="js/moment.min.js"></script>
-  <script src="js/common.js"></script>
+  <script src="js/constants.js"></script>
+  <script src="js/storageModule.js"></script>
+  <script src="js/notesRepository.js"></script>
   <script src="js/edit.js"></script>
 
 </body>

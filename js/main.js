@@ -1,52 +1,123 @@
-$(function () {
-  renderNotes();
-});
+;(function($) {
+  "use strict";
 
-function renderNotes() {
-  // get data
-  const data = getData();
-  if (data !== null) {
-    // sort notes
-  }
-  // create notes
-  createNotes(data);
-  //createNotes(songs.sort(compareSongs));
-}
+  $(function () {
 
-function createNotes(data) {
-  var compiledHtml = '<div>No data available!</div>';
-  if (data === null) {
-    // grab the template script
-    var templateScript = $("#note-template").html();
+    function renderNotes(sortOrder) {
+      // get data
+      var notes = notesRepository.getNotes();
+      if (notes !== null && !$('#showDone').is(':checked')) {
+        notes = $.grep(notes, function(e){
+          return e.completionDate === null;
+        });
+      }
+      if (notes !== null && sortOrder !== undefined) {
+        // sort notes
+        notes = notes.sort(sortOrder);
+      }
+      // create notes
+      createNotes(notes);
+    }
 
-    // compile the template
-    var template = Handlebars.compile(templateScript);
+    function createNotes(data) {
+      var compiledHtml = '<div>No data available!</div>';
+      if (data !== null) {
+        // grab the template script
+        var templateScript = $("#note-template").html();
 
-    // pass our data to the template
-    compiledHtml = template(data);
-  }
-  // add the compiled html to the page
-  $('.content-placeholder').html(compiledHtml);
-}
+        // compile the template
+        var template = Handlebars.compile(templateScript);
 
-function changeStyle(style) {
-  const stylePath = 'css/' + style.value;
-  $('#styleId').attr('href', stylePath);
+        // pass our data to the template
+        compiledHtml = template(data);
+      }
+      // add the compiled html to the page
+      $('.content-placeholder').html(compiledHtml);
+      $('.note-done').on('click', function() {
+        const noteId = $(this).closest('div').data('note-id');
+        const note = notesRepository.getNoteById(noteId);
+        note.completionDate = moment().format();
+        notesRepository.updateNote(note);
+        renderNotes(compareDueDate);
+      });
+      $('.edit-button').on('click', function() {
+        const noteId = $(this).closest('div').data('note-id');
+        storageModule.setData(CONSTANTS.STORAGE_KEY_EDIT_ID, noteId);
+        window.location = CONSTANTS.PAGE_DETAILS;
+      });
+    }
 
-  setData('stylePath', stylePath);
-}
+    function changeStyle(stylePath) {
+      $('#styleId').attr('href', stylePath);
+      storageModule.setData(CONSTANTS.STORAGE_KEY_STYLE, stylePath);
+    }
 
-function compareImportance(obj1, obj2) {
-  return obj1.importance > obj2.importance
-}
+    function compareDueDate(obj1, obj2) {
+      return obj1.dueDate > obj2.dueDate
+    }
 
-function compareModified(obj1, obj2) {
-  return obj1.importance > obj2.importance
-}
+    function compareCreationDate(obj1, obj2) {
+      return obj1.createDate > obj2.createDate
+    }
 
-function sortBy(index) {
-  var context = getData();
-  context.sort(function(a, b){return a.importance > b.importance});
-}
+    function compareImportance(obj1, obj2) {
+      return obj1.importance < obj2.importance
+    }
 
+    function selectButton(button) {
+      $('.selected-button').removeClass('selected-button');
+      $(button).addClass('selected-button');
+    }
 
+    $('#createNew').attr('href', CONSTANTS.PAGE_DETAILS);
+    $('#styleChanger').on('change', function() {
+      changeStyle($(this).val());
+    });
+    $('#styleDefault').val(CONSTANTS.STYLESHEET_DEFAULT);
+    $('#styleBlackAndWhite').val(CONSTANTS.STYLESHEET_BLACK_AND_WHITE);
+
+    $('#sortByDueDate').on('click', function() {
+      renderNotes(compareDueDate);
+      selectButton($(this));
+    });
+
+    $('#sortByCreationDate').on('click', function() {
+      renderNotes(compareCreationDate);
+      selectButton(this);
+    });
+
+    $('#sortByImportance').on('click', function() {
+      renderNotes(compareImportance);
+      selectButton(this);
+    });
+    $('#showDone').on('click', function() {
+      renderNotes(compareDueDate);
+    });
+
+    Handlebars.registerHelper('times', function (n, block) {
+      var accum = '';
+      for (var i = 0; i < n; ++i) {
+        accum += block.fn(i);
+      }
+      return accum;
+    });
+
+    Handlebars.registerHelper("formatDate", function(datetime) {
+      if (moment) {
+        return moment(datetime).format('DD. MMM YYYY');
+      }
+      else {
+        return datetime;
+      }
+    });
+
+    // init style
+    const stylePath = storageModule.getData(CONSTANTS.STORAGE_KEY_STYLE);
+    if (stylePath !== null) {
+      $('#styleId').attr('href', stylePath);
+    }
+
+    // default
+    renderNotes(compareDueDate);
+  });
+})(jQuery);
