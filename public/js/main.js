@@ -68,6 +68,7 @@
         const noteId = $(this).closest('div').data('note-id');
         const isChecked = $(this).is(':checked');
         mmaNoteApp.notesRepository.getNoteById(noteId, (note) => {
+          note.id = noteId;
           note.completionDate = isChecked ? moment().format() : null;
           mmaNoteApp.notesRepository.updateNote(note, function(e) {});
           renderAllNotes();
