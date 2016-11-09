@@ -1,18 +1,18 @@
-/*------------------- BLACK AND WHITE STYLE ---------
+/*------------------- DEFAULT STYLE -----------------
 ---------------------------------------------------*/
 body {
-  background-color:#fff;
+  background-color:#F2F4F5;
 }
 
 #container {
-  border: 1px solid #000;
+  border: 1px solid #1E5280;
 }
 
 header,
 footer,
 ul,
 .select {
-  background-color:#000;
+  background-color:#1E5280;
 }
 
 footer,
@@ -32,26 +32,31 @@ li a:hover,
   color:#fff;
 }
 
+.selected-button,
 button:hover {
-  background-color:#000;
+  background-color:#1E5280;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
   color:#fff;
 }
 
 .edit-title {
-  color: #000;
+  color: #1E5280;
 }
 
 .form-label {
-  color:#000;
+  color:#1E5280;
 }
 
 .form-control {
   background-color: #fff;
-  color: #000;
+  color: #1E5280;
 }
 
 i {
-  color: #000;
+  color: #1E5280;
 }
 
+.no-data {
+  border: 1px solid #1E5280;
+  color: #1E5280;
+}

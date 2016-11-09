@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Create New Note</title>
-    <link rel="stylesheet" href="css/common.css">
-    <link id="styleId" rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link id="styleId" rel="stylesheet" href="../css/default.css">
 </head>
 <body>
   <div id="edit-container">
     <h1 class="edit-title">Create new note!</h1>
-    <form action="index.html">
+    <form action="/">
       <div class="edit-row">
         <label class="form-label">Title</label>
         <input id="title" class="form-control" type="text" placeholder="Title" required />
@@ -33,12 +33,15 @@
     </form>
   </div>
 
-  <script src="js/jquery-3.1.1.min.js"></script>
-  <script src="js/moment.min.js"></script>
-  <script src="js/constants.js"></script>
-  <script src="js/storageModule.js"></script>
-  <script src="js/notesRepository.js"></script>
-  <script src="js/edit.js"></script>
+  <script src="../lib/jquery-3.1.1.min.js"></script>
+  <script src="../lib/moment.min.js"></script>
+  <script src="../js/constants.js"></script>
+  <script src="../js/localStorageModule.js"></script>
+  <script src="../js/serverStorageModule.js"></script>
+  <script src="../js/utilModule.js"></script>
+  <script src="../js/notesRepository.js"></script>
+  <script src="../js/note.js"></script>
+  <script src="../js/edit.js"></script>
 
 </body>
 </html>

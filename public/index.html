@@ -1,0 +1,100 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>CAS-FEE | Projekt1</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="lib/font-awesome.min.css">
+	<link rel="stylesheet" href="css/common.css">
+	<link id="styleId" rel="stylesheet" href="css/default.css">
+</head>
+
+<body>
+	<div id="container">
+    <div id="header">
+      <header>
+        <nav>
+          <ul>
+            <li><a id="createNew">Create New Note</a></li>
+          </ul>
+        </nav>
+        <div>
+          <select id="styleChanger" class="select">
+            <option id="styleDefault">Default</option>
+            <option id="styleBlackAndWhite">Black and White</option>
+          </select>
+        </div>
+      </header>
+    </div>
+    <div id="main">
+      <div id="main-content">
+        <div>
+          <button id="sortByDueDate">By finish day</button>
+          <button id="sortByCreationDate">By created day</button>
+          <button id="sortByImportance">By importance</button>
+        </div>
+        <div>
+          <input id="showDone" type="checkbox" class="custom-control-input" value="Show done">
+          <label for="showDone">Show Done</label>
+        </div>
+      </div>
+      <div  class="content-placeholder"></div>
+    </div>
+
+    <div id="footer">
+      <footer>
+        <p>Created by: Michael M&auml;rki</p>
+      </footer>
+    </div>
+  </div>
+
+  <script src="lib/jquery-3.1.1.min.js"></script>
+  <script src="lib/handlebars.min-latest.js"></script>
+  <script src="lib/handlebars-intl-with-locales.min.js"></script>
+  <script src="lib/moment.min.js"></script>
+
+  <script src="js/constants.js"></script>
+  <script src="js/handlebarsModule.js"></script>
+  <script src="js/localStorageModule.js"></script>
+  <script src="js/serverStorageModule.js"></script>
+  <script src="js/utilModule.js"></script>
+  <script src="js/notesRepository.js"></script>
+  <script src="js/main.js"></script>
+
+  <script id="note-template" type="text/x-handlebars-template">
+    <div>
+      {{#each this}}
+      <div class="note-template">
+        <div>
+          <span class="note-template-col11">{{formatRelative dueDate}}</span>
+          <span class="note-template-col12">{{title}}</span>
+          <span class="note-template-col13">
+              {{#times importance}}
+                <i class="fa fa-star" aria-hidden="true"></i>
+              {{/times}}
+            </span>
+          <span class="note-template-col14">&nbsp;</span>
+        </div>
+        <div data-note-id="{{_id}}">
+            <span class="note-template-col21 v-align-top">
+                <input class="note-done" type="checkbox" {{checkedIfDone completionDate}}><label> Done</label>
+
+            </span>
+          <span class="note-template-col22">
+              <textarea class="note-template-description" disabled cols="40" rows="5">{{description}}</textarea>
+            </span>
+          <span class="note-template-col24 v-align-top">
+              <button class="edit-button">Edit</button>
+            </span>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </script>
+
+</body>
+</html>
